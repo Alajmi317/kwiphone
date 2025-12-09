@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>نظام آيفون كويتي - Kwai</title>
+
+  <!-- خط Tajawal -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Tajawal', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top, #111827 0%, #020617 45%, #000000 100%);
+      color: #e5e7eb;
+    }
+
+    .app-wrapper {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #e5e7eb;
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: #9ca3af;
+    }
+
+    /* الهاتف */
+    .phone {
+      position: relative;
+      width: 340px;
+      height: 680px;
+      border-radius: 38px;
+      padding: 12px;
+      background: linear-gradient(145deg, #020617, #111827);
+      box-shadow:
+        0 0 0 2px #0f172a,
+        0 18px 40px rgba(0, 0, 0, 0.9);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .phone-inner {
+      position: relative;
+      flex: 1;
+      border-radius: 28px;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg,
+          #020617 0%,
+          #111827 25%,
+          #007a3d 35%,
+          #ffffff 45%,
+          #ce1126 55%,
+          #000000 70%,
+          #020617 100%);
+      background-size: 200% 200%;
+      animation: flagFlow 24s ease-in-out infinite;
+    }
+
+    @keyframes flagFlow {
+      0% { background-position: 0% 0%; }
+      50% { background-position: 100% 100%; }
+      100% { background-position: 0% 0%; }
+    }
+
+    /* النوتش */
+    .notch {
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 180px;
+      height: 30px;
+      background: #020617;
+      border-radius: 16px;
+      box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.9);
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+      color: #e5e7eb;
+      font-size: 11px;
+    }
+
+    .status-left {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+    .status-right {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .signal {
+      display: flex;
+      gap: 2px;
+    }
+
+    .signal span {
+      width: 2px;
+      border-radius: 999px;
+      background: #e5e7eb;
+    }
+
+    .signal span:nth-child(1) { height: 4px; opacity: 0.3; }
+    .signal span:nth-child(2) { height: 6px; opacity: 0.5; }
+    .signal span:nth-child(3) { height: 8px; opacity: 0.7; }
+    .signal span:nth-child(4) { height: 10px; opacity: 1; }
+
+    .battery {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .battery-body {
+      width: 18px;
+      height: 9px;
+      border-radius: 3px;
+      border: 1px solid #e5e7eb;
+      display: flex;
+      align-items: center;
+      padding: 1px;
+    }
+    .battery-level {
+      width: 70%;
+      height: 100%;
+      border-radius: 2px;
+      background: linear-gradient(90deg, #22c55e, #a3e635);
+    }
+    .battery-tip {
+      width: 2px;
+      height: 5px;
+      border-radius: 1px;
+      background: #e5e7eb;
+    }
+
+    /* الشاشات */
+    .screen {
+      position: absolute;
+      inset: 0;
+      padding: 54px 14px 18px;
+      display: none;
+      color: #f9fafb;
+      backdrop-filter: blur(16px);
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    /* شاشة القفل */
+    .lock-time {
+      font-size: 48px;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 24px;
+      text-shadow: 0 8px 12px rgba(0,0,0,0.8);
+    }
+
+    .lock-date {
+      text-align: center;
+      font-size: 14px;
+      margin-top: 4px;
+      color: #e5e7eb;
+      opacity: 0.9;
+    }
+
+    .lock-notification {
+      margin: 40px auto 0;
+      max-width: 260px;
+      border-radius: 18px;
+      padding: 10px 12px;
+      background: linear-gradient(135deg, rgba(15,23,42,0.92), rgba(2,6,23,0.96));
+      box-shadow:
+        0 10px 25px rgba(0,0,0,0.85),
+        0 0 0 1px rgba(148,163,184,0.25);
+      font-size: 12px;
+    }
+
+    .lock-notification-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+      color: #e5e7eb;
+      font-weight: 700;
+    }
+
+    .lock-notification-body {
+      color: #d1d5db;
+      line-height: 1.5;
+    }
+
+    .slide-to-unlock {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 13px;
+      color: #d1d5db;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.9;
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+
+    .slide-arrow {
+      width: 42px;
+      height: 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(209,213,219,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      backdrop-filter: blur(8px);
+      background: linear-gradient(135deg, rgba(15,23,42,0.9), rgba(30,64,175,0.6));
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.4; transform: translate(-50%, 0); }
+      50% { opacity: 1; transform: translate(-50%, -2px); }
+      100% { opacity: 0.4; transform: translate(-50%, 0); }
+    }
+
+    /* الشاشة الرئيسية */
+    .home-screen {
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      height: 100%;
+      gap: 8px;
+    }
+
+    .home-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #f9fafb;
+      font-size: 13px;
+      padding: 2px 2px 0;
+    }
+
+    .home-top span {
+      opacity: 0.9;
+    }
+
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 6px;
+      padding-bottom: 4px;
+    }
+
+    .app-icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px;
+      color: #e5e7eb;
+    }
+
+    .app-icon .icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 700;
+      color: #f9fafb;
+      box-shadow:
+        0 6px 14px rgba(0,0,0,0.55),
+        0 0 0 1px rgba(15,23,42,0.9);
+    }
+
+    .icon-kuwait {
+      background: conic-gradient(
+        from 210deg,
+        #007a3d 0deg,
+        #007a3d 90deg,
+        #ffffff 90deg,
+        #ffffff 180deg,
+        #ce1126 180deg,
+        #ce1126 270deg,
+        #000000 270deg,
+        #000000 360deg
+      );
+    }
+
+    .icon-messages {
+      background: linear-gradient(135deg, #22c55e, #15803d);
+    }
+
+    .icon-camera {
+      background: radial-gradient(circle at 30% 30%, #facc15, #4b5563);
+    }
+
+    .icon-settings {
+      background: radial-gradient(circle at 10% 0%, #f97316, #020617);
+    }
+
+    .icon-store {
+      background: radial-gradient(circle at 20% 0%, #a855f7, #1d4ed8);
+    }
+
+    .icon-yellow {
+      background: linear-gradient(135deg, #eab308, #b45309);
+    }
+
+    .icon-dark {
+      background: linear-gradient(135deg, #111827, #020617);
+    }
+
+    .dock {
+      margin-top: 6px;
+      padding: 6px 8px;
+      border-radius: 18px;
+      background: radial-gradient(circle at top, rgba(15,23,42,0.9), rgba(15,23,42,0.97));
+      display: flex;
+      justify-content: space-around;
+      backdrop-filter: blur(16px);
+      box-shadow:
+        0 8px 20px rgba(0,0,0,0.85),
+        0 0 0 1px rgba(15,23,42,1);
+    }
+
+    .dock .icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: #f9fafb;
+      box-shadow:
+        0 6px 14px rgba(0,0,0,0.55),
+        0 0 0 1px rgba(15,23,42,0.9);
+      background: linear-gradient(135deg, #0ea5e9, #1e40af);
+    }
+
+    /* مركز التحكم */
+    .control-center {
+      background: linear-gradient(160deg, rgba(15,23,42,0.96), rgba(2,6,23,0.98));
+      padding-top: 52px;
+      padding-bottom: 18px;
+      color: #f9fafb;
+    }
+
+    .cc-grid {
+      display: grid;
+      grid-template-columns: 2fr 1.2fr;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .cc-tile {
+      background: radial-gradient(circle at top, rgba(31,41,55,0.9), rgba(15,23,42,1));
+      border-radius: 20px;
+      padding: 12px;
+      box-shadow:
+        0 10px 24px rgba(0,0,0,0.85),
+        0 0 0 1px rgba(55,65,81,0.6);
+      font-size: 11px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .cc-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: #d1d5db;
+    }
+
+    .cc-toggle-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+    }
+
+    .cc-toggle {
+      border-radius: 16px;
+      padding: 8px;
+      text-align: center;
+      font-size: 11px;
+      box-shadow:
+        0 6px 14px rgba(0,0,0,0.7),
+        0 0 0 1px rgba(55,65,81,0.8);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .cc-toggle.on {
+      background: radial-gradient(circle at top, #22c55e, #15803d);
+      color: #ecfdf5;
+    }
+
+    .cc-toggle.off {
+      background: radial-gradient(circle at top, #020617, #020617);
+      color: #9ca3af;
+    }
+
+    .cc-slider {
+      margin-top: 8px;
+      background: linear-gradient(90deg, #0ea5e9, #22c55e);
+      border-radius: 999px;
+      height: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cc-slider-thumb {
+      position: absolute;
+      right: 18%;
+      top: 50%;
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: #f9fafb;
+      border: 2px solid #0f172a;
+      transform: translateY(-50%);
+      box-shadow: 0 6px 14px rgba(15,23,42,0.9);
+    }
+
+    .cc-bottom-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      font-size: 10px;
+    }
+
+    .cc-btn {
+      border-radius: 16px;
+      padding: 8px 4px;
+      text-align: center;
+      background: radial-gradient(circle at top, rgba(15,23,42,0.95), rgba(15,23,42,1));
+      box-shadow:
+        0 6px 14px rgba(0,0,0,0.85),
+        0 0 0 1px rgba(55,65,81,0.7);
+    }
+
+    /* iMessage */
+    .messages-screen {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      height: 100%;
+      padding-top: 58px;
+    }
+
+    .chat-header {
+      position: absolute;
+      top: 54px;
+      left: 0;
+      right: 0;
+      padding: 4px 14px 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      background: linear-gradient(to bottom, rgba(15,23,42,0.98), rgba(15,23,42,0.8), transparent);
+      z-index: 2;
+    }
+
+    .chat-header .name {
+      font-weight: 700;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .chat-header .name span:last-child {
+      font-size: 11px;
+      color: #9ca3af;
+      font-weight: 400;
+    }
+
+    .chat-body {
+      margin-top: 30px;
+      flex: 1;
+      overflow-y: auto;
+      padding: 4px 4px 4px 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .bubble-row {
+      display: flex;
+      width: 100%;
+    }
+
+    .bubble-row.me {
+      justify-content: flex-start;
+    }
+
+    .bubble-row.them {
+      justify-content: flex-end;
+    }
+
+    .bubble {
+      max-width: 78%;
+      padding: 8px 10px;
+      border-radius: 18px;
+      font-size: 12px;
+      line-height: 1.4;
+      box-shadow:
+        0 8px 16px rgba(0,0,0,0.8),
+        0 0 0 1px rgba(15,23,42,0.9);
+    }
+
+    .bubble.me {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #ecfdf5;
+      border-bottom-right-radius: 4px;
+    }
+
+    .bubble.them {
+      background: linear-gradient(135deg, #1d4ed8, #0ea5e9);
+      color: #eff6ff;
+      border-bottom-left-radius: 4px;
+    }
+
+    .chat-input {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 6px 4px;
+      border-radius: 999px;
+      background: radial-gradient(circle at top, rgba(15,23,42,0.95), rgba(15,23,42,1));
+      margin-bottom: 4px;
+      font-size: 12px;
+    }
+
+    .input-field {
+      flex: 1;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: none;
+      outline: none;
+      background: #020617;
+      color: #f9fafb;
+      font-size: 12px;
+    }
+
+    .send-btn {
+      border-radius: 999px;
+      padding: 4px 10px;
+      border: none;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #ecfdf5;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 11px;
+    }
+
+    /* زر الهوم */
+    .home-bar {
+      width: 110px;
+      height: 4px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #6b7280, #d1d5db, #6b7280);
+      margin: 8px auto 4px;
+      opacity: 0.7;
+    }
+
+    .home-button {
+      position: relative;
+      width: 80px;
+      height: 18px;
+      border-radius: 999px;
+      margin: 4px auto 0;
+      border: 1px solid rgba(148,163,184,0.8);
+      background: radial-gradient(circle at top, rgba(31,41,55,0.95), rgba(15,23,42,1));
+      box-shadow: 0 6px 12px rgba(0,0,0,0.8);
+      cursor: pointer;
+    }
+
+    .home-button::before {
+      content: "";
+      position: absolute;
+      inset: 1px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      opacity: 0.7;
+    }
+
+    /* أزرار التنقل خارج الهاتف */
+    .nav-buttons {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 360px;
+    }
+
+    .nav-btn {
+      padding: 6px 10px;
+      font-size: 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: radial-gradient(circle at top, #020617, #020617);
+      color: #e5e7eb;
+      cursor: pointer;
+      min-width: 110px;
+    }
+
+    .nav-btn.active {
+      border-color: #22c55e;
+      box-shadow: 0 0 0 1px rgba(34,197,94,0.4);
+    }
+
+    .nav-btn:hover {
+      border-color: #38bdf8;
+    }
+
+    /* شريط فوق الهاتف يوضح الوضع */
+    .mode-label {
+      font-size: 12px;
+      color: #9ca3af;
+    }
+
+    @media (max-width: 480px) {
+      .phone {
+        transform: scale(0.9);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-wrapper">
+    <div class="title">نظام آيفون كويتي</div>
+    <div class="subtitle">شاشة قفل • رئيسية • مركز تحكم • محادثات • خلفية بألوان علم الكويت</div>
+
+    <div class="mode-label" id="modeLabel">الوضع الحالي: شاشة القفل</div>
+
+    <div class="phone">
+      <div class="phone-inner">
+
+        <!-- النوتش -->
+        <div class="notch">
+          <div class="status-left">
+            <span id="statusTime">9:41</span>
+          </div>
+          <div class="status-right">
+            <span>4G</span>
+            <div class="signal">
+              <span></span><span></span><span></span><span></span>
+            </div>
+            <div class="battery">
+              <div class="battery-body">
+                <div class="battery-level"></div>
+              </div>
+              <div class="battery-tip"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- شاشة القفل -->
+        <div class="screen active" id="lockScreen">
+          <div class="lock-time" id="lockTime">9:41</div>
+          <div class="lock-date" id="lockDate">الثلاثاء، ٩ ديسمبر</div>
+
+          <div class="lock-notification">
+            <div class="lock-notification-header">
+              <span>Kwai AI</span>
+              <span>الآن</span>
+            </div>
+            <div class="lock-notification-body">
+              أهلاً عبد الله، اضغط للسحب للدخول على نظام الآيفون الكويتي.
+            </div>
+          </div>
+
+          <div class="slide-to-unlock" id="slideUnlock">
+            <div class="slide-arrow">››</div>
+            اسحب/اضغط للفتح
+          </div>
+        </div>
+
+        <!-- الشاشة الرئيسية -->
+        <div class="screen" id="homeScreen">
+          <div class="home-screen">
+            <div class="home-top">
+              <span id="homeDateText">الثلاثاء ٩ ديسمبر</span>
+              <span>الكويت</span>
+            </div>
+
+            <div class="apps-grid">
+              <div class="app-icon">
+                <div class="icon icon-kuwait" data-screen="messagesScreen">
+                  KW
+                </div>
+                <span>الرسائل كويت</span>
+              </div>
+              <div class="app-icon">
+                <div class="icon icon-messages" data-screen="messagesScreen">
+                  
+                </div>
+                <span>iMessage</span>
+              </div>
+              <div class="app-icon">
+                <div class="icon icon-camera">
+                  📷
+                </div>
+                <span>الكاميرا</span>
+              </div>
+              <div class="app-icon">
+                <div class="icon icon-settings">
+                  ⚙️
+                </div>
+                <span>الإعدادات</span>
+              </div>
+              <div class="app-icon">
+                <div class="icon icon-store">
+                  
+                </div>
+                <span>المتجر</span>
+              </div>
+              <div class="app-icon">
+                <div class="icon icon-yellow">
+                  💬
+                </div>
+                <span>دردشة</span>
+              </div>
+              <div class="app-icon">
+                <div class="icon icon-dark" data-screen="controlCenter">
+                  ☾
+                </div>
+                <span>مركز التحكم</span>
+              </div>
+              <div class="app-icon">
+                <div class="icon icon-dark">
+                  🌙
+                </div>
+                <span>التركيز</span>
+              </div>
+            </div>
+
+            <div class="dock">
+              <div class="icon">📞</div>
+              <div class="icon">💬</div>
+              <div class="icon">🌐</div>
+              <div class="icon">🎵</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- مركز التحكم -->
+        <div class="screen" id="controlCenter">
+          <div class="control-center">
+            <div style="font-size: 13px; margin-bottom: 8px;">
+              مركز التحكم — الكويت
+            </div>
+
+            <div class="cc-grid">
+              <div class="cc-tile">
+                <div class="cc-title-row">
+                  <span>Wi-Fi — البيت</span>
+                  <span>متصل</span>
+                </div>
+                <div class="cc-toggle-row">
+                  <div class="cc-toggle on">Wi-Fi</div>
+                  <div class="cc-toggle on">البيانات</div>
+                  <div class="cc-toggle off">وضع الطائرة</div>
+                  <div class="cc-toggle on">البلوتوث</div>
+                </div>
+                <div class="cc-slider">
+                  <div class="cc-slider-thumb"></div>
+                </div>
+              </div>
+
+              <div class="cc-tile">
+                <div class="cc-title-row">
+                  <span>سطوع الشاشة</span>
+                  <span>٧٥٪‏</span>
+                </div>
+                <div class="cc-slider" style="margin-top: 16px;">
+                  <div class="cc-slider-thumb" style="right: 8%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="cc-bottom-row">
+              <div class="cc-btn">الوضع الليلي</div>
+              <div class="cc-btn">التسجيل</div>
+              <div class="cc-btn">المنبه</div>
+              <div class="cc-btn">الكشاف</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- iMessage كويتي -->
+        <div class="screen" id="messagesScreen">
+          <div class="messages-screen">
+            <div class="chat-header">
+              <div>‹ رجوع</div>
+              <div class="name">
+                <span>قروب ربع الكويت 🇰🇼</span>
+                <span>متصل الآن</span>
+              </div>
+              <div>تفاصيل</div>
+            </div>
+
+            <div class="chat-body" id="chatBody">
+              <div class="bubble-row me">
+                <div class="bubble me">
+                  السلام عليكم، هذي تجربة نظام آيفون كويتي داخل الموقع.
+                </div>
+              </div>
+              <div class="bubble-row them">
+                <div class="bubble them">
+                  وعليكم السلام، التصميم فخم، الخلفية وألوان العلم طالعة خيال!
+                </div>
+              </div>
+              <div class="bubble-row me">
+                <div class="bubble me">
+                  كله معمول بـ HTML + CSS + JS وخط Tajawal، تقدر تعدل عليه براحتك.
+                </div>
+              </div>
+              <div class="bubble-row them">
+                <div class="bubble them">
+                  يلا نطوره ونسوي منصة Kwai للذكاء الاصطناعي على نفس الستايل.
+                </div>
+              </div>
+            </div>
+
+            <div class="chat-input">
+              <input type="text" id="chatInput" class="input-field" placeholder="iMessage كويتي — اكتب رسالة..." />
+              <button class="send-btn" id="sendBtn">إرسال</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="home-bar"></div>
+      <div class="home-button" id="homeButton"></div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn active" data-target="lockScreen">شاشة القفل</button>
+      <button class="nav-btn" data-target="homeScreen">الشاشة الرئيسية</button>
+      <button class="nav-btn" data-target="controlCenter">مركز التحكم</button>
+      <button class="nav-btn" data-target="messagesScreen">iMessage</button>
+    </div>
+  </div>
+
+  <script>
+    const screens = {
+      lockScreen: document.getElementById('lockScreen'),
+      homeScreen: document.getElementById('homeScreen'),
+      controlCenter: document.getElementById('controlCenter'),
+      messagesScreen: document.getElementById('messagesScreen')
+    };
+
+    const modeLabel = document.getElementById('modeLabel');
+    const navBtns = document.querySelectorAll('.nav-btn');
+    const homeButton = document.getElementById('homeButton');
+    const slideUnlock = document.getElementById('slideUnlock');
+
+    function setActiveScreen(screenId) {
+      Object.values(screens).forEach(s => s.classList.remove('active'));
+      screens[screenId].classList.add('active');
+
+      navBtns.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.target === screenId);
+      });
+
+      let labelText = '';
+      if (screenId === 'lockScreen') labelText = 'الوضع الحالي: شاشة القفل';
+      if (screenId === 'homeScreen') labelText = 'الوضع الحالي: الشاشة الرئيسية';
+      if (screenId === 'controlCenter') labelText = 'الوضع الحالي: مركز التحكم';
+      if (screenId === 'messagesScreen') labelText = 'الوضع الحالي: محادثات iMessage';
+      modeLabel.textContent = labelText;
+    }
+
+    navBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        setActiveScreen(btn.dataset.target);
+      });
+    });
+
+    homeButton.addEventListener('click', () => {
+      setActiveScreen('homeScreen');
+    });
+
+    slideUnlock.addEventListener('click', () => {
+      setActiveScreen('homeScreen');
+    });
+
+    // الضغط على "مركز التحكم" من الشاشة الرئيسية
+    document.querySelectorAll('.app-icon .icon[data-screen]').forEach(icon => {
+      icon.addEventListener('click', () => {
+        const target = icon.getAttribute('data-screen');
+        if (target && screens[target]) {
+          setActiveScreen(target);
+        }
+      });
+    });
+
+    // تحديث الوقت والتاريخ بشكل بسيط
+    function updateTime() {
+      const now = new Date();
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      const timeStr = `${hours}:${minutes}`;
+
+      const days = ['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
+      const dayName = days[now.getDay()];
+      const day = now.getDate();
+      const monthNames = [
+        'يناير','فبراير','مارس','أبريل','مايو','يونيو',
+        'يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'
+      ];
+      const monthName = monthNames[now.getMonth()];
+
+      document.getElementById('lockTime').textContent = timeStr;
+      document.getElementById('statusTime').textContent = timeStr;
+      document.getElementById('lockDate').textContent = `${dayName}، ${day} ${monthName}`;
+      document.getElementById('homeDateText').textContent = `${dayName} ${day} ${monthName}`;
+    }
+
+    updateTime();
+    setInterval(updateTime, 30 * 1000);
+
+    // iMessage: إضافة رسالة بسيطة عند الإرسال (محلياً فقط)
+    const chatBody = document.getElementById('chatBody');
+    const chatInput = document.getElementById('chatInput');
+    const sendBtn = document.getElementById('sendBtn');
+
+    function sendMessage() {
+      const text = chatInput.value.trim();
+      if (!text) return;
+
+      const row = document.createElement('div');
+      row.className = 'bubble-row me';
+
+      const bubble = document.createElement('div');
+      bubble.className = 'bubble me';
+      bubble.textContent = text;
+
+      row.appendChild(bubble);
+      chatBody.appendChild(row);
+      chatBody.scrollTop = chatBody.scrollHeight;
+      chatInput.value = '';
+    }
+
+    sendBtn.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        sendMessage();
+      }
+    });
+  </script>
+</body>
+</html>
