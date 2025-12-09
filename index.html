@@ -100,7 +100,7 @@
       box-shadow:
         0 0 0 1px rgba(15,23,42,1),
         0 10px 20px rgba(0,0,0,0.9);
-      z-index: 20;
+      z-index: 30;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -162,6 +162,25 @@
       background: #e5e7eb;
     }
 
+    /* زر مركز التحكم */
+    .cc-button {
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      box-shadow: 0 0 0 1px rgba(148,163,184,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      color: #e5e7eb;
+      z-index: 31;
+      cursor: pointer;
+    }
+
     .screen {
       position: absolute;
       inset: 0;
@@ -169,6 +188,7 @@
       display: none;
       color: #f9fafb;
       font-size: 13px;
+      z-index: 10;
     }
     .screen.active {
       display: block;
@@ -236,6 +256,7 @@
       opacity: 0.9;
       animation: pulse 1.8s ease-in-out infinite;
       cursor: pointer;
+      z-index: 11;
     }
 
     .slide-arrow {
@@ -391,7 +412,7 @@
       align-items: center;
       font-size: 14px;
       background: linear-gradient(to bottom, rgba(15,23,42,0.97), rgba(15,23,42,0.85), transparent);
-      z-index: 2;
+      z-index: 12;
     }
 
     .screen-header-title {
@@ -788,6 +809,203 @@
       width: 100%;
     }
 
+    /* مركز التحكم iOS17-style */
+    .control-center-overlay {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -72%;
+      height: 72%;
+      padding: 10px 12px 14px;
+      background: radial-gradient(circle at top, rgba(15,23,42,0.98), rgba(15,23,42,0.97));
+      backdrop-filter: blur(24px);
+      box-shadow:
+        0 18px 40px rgba(0,0,0,0.9),
+        0 0 0 1px rgba(31,41,55,0.9);
+      border-bottom-left-radius: 26px;
+      border-bottom-right-radius: 26px;
+      z-index: 25;
+      transition: top 0.22s ease-out;
+      color: #f9fafb;
+      pointer-events: none;
+    }
+
+    .control-center-overlay.open {
+      top: 32px;
+      pointer-events: auto;
+    }
+
+    .cc-handle {
+      width: 64px;
+      height: 4px;
+      border-radius: 999px;
+      Background: #4b5563;
+      opacity: 0.9;
+      margin: 4px auto 10px;
+    }
+
+    .cc-content {
+      display: grid;
+      grid-template-rows: auto auto auto;
+      row-gap: 10px;
+      height: calc(100% - 20px);
+    }
+
+    .cc-top-row {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      column-gap: 10px;
+    }
+
+    .cc-tile-large {
+      border-radius: 22px;
+      padding: 10px;
+      background: radial-gradient(circle at top, rgba(30,64,175,0.9), rgba(15,23,42,0.98));
+      box-shadow:
+        0 12px 30px rgba(0,0,0,0.9),
+        0 0 0 1px rgba(55,65,81,0.8);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 11px;
+    }
+
+    .cc-network-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+    }
+
+    .cc-toggle {
+      border-radius: 16px;
+      padding: 8px 6px;
+      text-align: center;
+      box-shadow:
+        0 6px 14px rgba(0,0,0,0.85),
+        0 0 0 1px rgba(30,64,175,0.6);
+      font-size: 11px;
+    }
+
+    .cc-toggle.on {
+      background: radial-gradient(circle at top, #22c55e, #15803d);
+      color: #ecfdf5;
+    }
+
+    .cc-toggle.off {
+      background: radial-gradient(circle at top, #020617, #020617);
+      color: #9ca3af;
+    }
+
+    .cc-slider-vertical {
+      flex: 1;
+      border-radius: 18px;
+      background: linear-gradient(to top, #0ea5e9, #22c55e);
+      position: relative;
+      overflow: hidden;
+      margin-top: 6px;
+    }
+
+    .cc-slider-thumb-v {
+      position: absolute;
+      left: 4px;
+      right: 4px;
+      height: 26px;
+      border-radius: 16px;
+      background: rgba(15,23,42,0.9);
+      bottom: 14%;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.9);
+    }
+
+    .cc-middle-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      font-size: 11px;
+    }
+
+    .cc-slider-horizontal {
+      height: 24px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #0ea5e9, #22c55e);
+      position: relative;
+      overflow: hidden;
+      margin-top: 6px;
+    }
+
+    .cc-slider-thumb-h {
+      position: absolute;
+      top: 2px;
+      width: 32px;
+      height: 20px;
+      border-radius: 999px;
+      background: #f9fafb;
+      right: 20%;
+      box-shadow: 0 6px 14px rgba(15,23,42,0.9);
+    }
+
+    .cc-bottom-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      font-size: 10px;
+    }
+
+    .cc-btn {
+      border-radius: 16px;
+      padding: 8px 4px;
+      text-align: center;
+      background: radial-gradient(circle at top, rgba(15,23,42,0.97), rgba(15,23,42,1));
+      box-shadow:
+        0 8px 18px rgba(0,0,0,0.9),
+        0 0 0 1px rgba(55,65,81,0.8);
+    }
+
+    /* إشعارات أعلى الشاشة */
+    .notification-container {
+      position: absolute;
+      top: 40px;
+      left: 0;
+      right: 0;
+      padding: 0 12px;
+      z-index: 40;
+      pointer-events: none;
+    }
+
+    .notification {
+      max-width: 260px;
+      margin: 0 auto 6px;
+      border-radius: 18px;
+      padding: 8px 10px;
+      background: rgba(15,23,42,0.97);
+      backdrop-filter: blur(18px);
+      box-shadow:
+        0 14px 30px rgba(0,0,0,0.95),
+        0 0 0 1px rgba(148,163,184,0.4);
+      font-size: 11px;
+      color: #f9fafb;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+      pointer-events: auto;
+      cursor: pointer;
+    }
+
+    .notification.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .notification-title-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2px;
+      font-weight: 700;
+    }
+
+    .notification-body {
+      color: #e5e7eb;
+    }
+
     /* شريط و زر الهوم */
     .home-bar {
       width: 110px;
@@ -859,12 +1077,15 @@
 <body>
   <div class="app-wrapper">
     <div class="title">نظام آيفون كويتي حديث</div>
-    <div class="subtitle">محاكاة iOS كويتي مع متجر وتطبيقات تعمل داخل الموقع</div>
+    <div class="subtitle">محاكاة iOS كويتي مع مركز تحكم ومتجر وتطبيقات تعمل داخل الموقع</div>
 
     <div class="mode-label" id="modeLabel">الوضع الحالي: شاشة القفل</div>
 
     <div class="phone">
       <div class="phone-inner" id="phoneInner">
+
+        <!-- حاوية الإشعارات -->
+        <div id="notificationContainer" class="notification-container"></div>
 
         <!-- النوتش -->
         <div class="notch">
@@ -885,6 +1106,56 @@
           </div>
         </div>
 
+        <!-- زر مركز التحكم -->
+        <div id="ccButton" class="cc-button">≡</div>
+
+        <!-- مركز التحكم (iOS17-style) -->
+        <div id="controlCenterOverlay" class="control-center-overlay">
+          <div class="cc-handle" id="ccHandle"></div>
+          <div class="cc-content">
+            <div class="cc-top-row">
+              <div class="cc-tile-large">
+                <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;">
+                  <span>KUWAIT — البيت</span>
+                  <span style="font-size:10px;color:#bfdbfe;">متصل</span>
+                </div>
+                <div class="cc-network-grid">
+                  <div class="cc-toggle on">Wi-Fi</div>
+                  <div class="cc-toggle on">البيانات</div>
+                  <div class="cc-toggle off">وضع الطائرة</div>
+                  <div class="cc-toggle on">Bluetooth</div>
+                </div>
+              </div>
+              <div class="cc-tile-large">
+                <div>السطوع</div>
+                <div class="cc-slider-vertical">
+                  <div class="cc-slider-thumb-v"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="cc-middle-row">
+              <div class="cc-tile-large">
+                <div>الصوت</div>
+                <div class="cc-slider-horizontal">
+                  <div class="cc-slider-thumb-h"></div>
+                </div>
+              </div>
+              <div class="cc-tile-large">
+                <div>تركيز</div>
+                <div style="margin-top:6px;font-size:11px;">وضع العمل — متوقف</div>
+              </div>
+            </div>
+
+            <div class="cc-bottom-row">
+              <div class="cc-btn">الكشاف</div>
+              <div class="cc-btn">المنبه</div>
+              <div class="cc-btn">الآلة الحاسبة</div>
+              <div class="cc-btn" data-open="cameraScreen">الكاميرا</div>
+            </div>
+          </div>
+        </div>
+
         <!-- شاشة القفل -->
         <div class="screen active" id="lockScreen">
           <div class="lock-time" id="lockTime">9:41</div>
@@ -897,7 +1168,7 @@
                 <span>الآن</span>
               </div>
               <div class="lock-notification-body">
-                اسحب للداخل للدخول على نظام الآيفون الكويتي الحديث مع متجر وتطبيقات شغّالة داخل الموقع.
+                اسحب للداخل للدخول على نظام الآيفون الكويتي الحديث مع مركز تحكم ومتجر وتطبيقات شغّالة.
               </div>
             </div>
             <div class="lock-notification">
@@ -1011,7 +1282,7 @@
                 <div class="setting-row">
                   <div class="setting-label">
                     <span>مركز التحكم</span>
-                    <span>تخصيص اختصارات</span>
+                    <span>سحب من الأعلى + زر</span>
                   </div>
                   <span>›</span>
                 </div>
@@ -1083,7 +1354,7 @@
             <div class="chat-body" id="kwaiAIChatBody">
               <div class="bubble-row them">
                 <div class="bubble them">
-                  أهلاً، أنا Kwai AI داخل نظامك الكويتي. اكتب أي شيء وراح أرد عليك محلياً (بدون إنترنت حقيقي).
+                  أهلاً، أنا Kwai AI داخل نظامك الكويتي. اكتب أي شيء وراح أرد عليك محلياً (محاكاة بدون اتصال خارجي).
                 </div>
               </div>
             </div>
@@ -1289,7 +1560,6 @@
                 <div class="track-title">مقاطع — Track 1</div>
                 <div class="track-meta">ملف mp3 جاهز</div>
                 <audio controls>
-                  <!-- غيّر الرابط لرابط mp3 خاص فيك -->
                   <source src="" type="audio/mpeg">
                 </audio>
               </div>
@@ -1329,6 +1599,7 @@
   </div>
 
   <script>
+    /* الشاشات الأساسية */
     const screens = {
       lockScreen: document.getElementById('lockScreen'),
       homeScreen: document.getElementById('homeScreen'),
@@ -1396,6 +1667,7 @@
       }
     });
 
+    /* الوقت والتاريخ */
     function updateTime() {
       const now = new Date();
       const h = now.getHours().toString().padStart(2, '0');
@@ -1418,7 +1690,7 @@
     updateTime();
     setInterval(updateTime, 30000);
 
-    /* المتجر والتطبيقات */
+    /* المتجر والتطبيقات + localStorage للتطبيقات المثبتة */
     const homeAppsContainer = document.getElementById('homeApps');
     const storeContent = document.getElementById('storeContent');
     const kwaiStoreContent = document.getElementById('kwaiStoreContent');
@@ -1471,7 +1743,16 @@
       }
     ];
 
-    const installedApps = new Set(['messages', 'settings', 'storeMain', 'camera', 'browser', 'music']);
+    const defaultInstalled = ['messages','settings','storeMain','camera','browser','music'];
+    let stored = [];
+    try {
+      stored = JSON.parse(localStorage.getItem('kwaiInstalledApps') || '[]');
+    } catch { stored = []; }
+    const installedApps = new Set(stored.length ? stored : defaultInstalled);
+
+    function saveInstalled() {
+      localStorage.setItem('kwaiInstalledApps', JSON.stringify(Array.from(installedApps)));
+    }
 
     function renderHomeApps() {
       homeAppsContainer.innerHTML = '';
@@ -1569,10 +1850,13 @@
         btn.addEventListener('click', () => {
           if (installedApps.has(app.id)) {
             installedApps.delete(app.id);
+            sendNotification('App Store', `تم إزالة ${app.name} من الشاشة الرئيسية`);
           } else {
             installedApps.add(app.id);
+            sendNotification('App Store', `تم تثبيت ${app.name} على الشاشة الرئيسية`, app.openScreen);
           }
           updateBtn();
+          saveInstalled();
           renderHomeApps();
         });
 
@@ -1587,13 +1871,46 @@
     renderStoreList(storeContent);
     renderStoreList(kwaiStoreContent);
 
-    /* iMessage */
-    function setupSimpleChat(bodyId, inputId, btnId, isAI = false) {
+    /* شات بسيط + إمكانية محاكاة AI */
+    function setupSimpleChat(bodyId, inputId, btnId, options = {}) {
+      const { isAI = false, storageKey = null } = options;
       const body = document.getElementById(bodyId);
       const input = document.getElementById(inputId);
       const btn = document.getElementById(btnId);
 
-      function addBubble(text, who = 'me') {
+      let messages = [];
+
+      function renderFromStorage() {
+        if (!storageKey) return;
+        let raw;
+        try {
+          raw = JSON.parse(localStorage.getItem(storageKey) || '[]');
+        } catch { raw = []; }
+        if (!raw || !Array.isArray(raw) || !raw.length) return;
+        messages = raw;
+        body.innerHTML = '';
+        messages.forEach(msg => {
+          const row = document.createElement('div');
+          row.className = 'bubble-row ' + (msg.who === 'them' ? 'them' : 'me');
+          const bubble = document.createElement('div');
+          bubble.className = 'bubble ' + (msg.who === 'them' ? 'them' : 'me');
+          bubble.textContent = msg.text;
+          row.appendChild(bubble);
+          body.appendChild(row);
+        });
+        body.scrollTop = body.scrollHeight;
+      }
+
+      if (storageKey) {
+        renderFromStorage();
+      }
+
+      function saveMessages() {
+        if (!storageKey) return;
+        localStorage.setItem(storageKey, JSON.stringify(messages));
+      }
+
+      function addBubble(text, who = 'me', save = true) {
         const row = document.createElement('div');
         row.className = 'bubble-row ' + who;
         const bubble = document.createElement('div');
@@ -1602,6 +1919,10 @@
         row.appendChild(bubble);
         body.appendChild(row);
         body.scrollTop = body.scrollHeight;
+        if (save && storageKey) {
+          messages.push({ text, who });
+          saveMessages();
+        }
       }
 
       function send() {
@@ -1611,7 +1932,9 @@
         input.value = '';
         if (isAI) {
           setTimeout(() => {
-            addBubble('رد Kwai AI (محلي): فهمت كلامك عن "' + text + '" لكن هنا مجرد محاكاة داخل الموقع.', 'them');
+            const reply = 'رد Kwai AI (محلي): فهمت كلامك عن "' + text + '" لكن هنا مجرد محاكاة داخل الموقع.';
+            addBubble(reply, 'them');
+            sendNotification('Kwai AI', 'رد جديد من Kwai AI', 'kwaiAIScreen');
           }, 400);
         }
       }
@@ -1627,13 +1950,80 @@
       return { addBubble };
     }
 
-    setupSimpleChat('imChatBody', 'imChatInput', 'imSendBtn', false);
-    setupSimpleChat('kwaiAIChatBody', 'kwaiAIInput', 'kwaiAISendBtn', true);
-    setupSimpleChat('chatKuwaitBody', 'chatKuwaitInput', 'chatKuwaitSendBtn', false);
+    // الإشعارات
+    const notificationContainer = document.getElementById('notificationContainer');
 
-    /* الإعدادات: ثيم */
+    function sendNotification(title, bodyText, targetScreenId) {
+      const n = document.createElement('div');
+      n.className = 'notification';
+      const header = document.createElement('div');
+      header.className = 'notification-title-row';
+      const tSpan = document.createElement('span');
+      tSpan.textContent = title;
+      const timeSpan = document.createElement('span');
+      timeSpan.textContent = 'الآن';
+      header.appendChild(tSpan);
+      header.appendChild(timeSpan);
+
+      const body = document.createElement('div');
+      body.className = 'notification-body';
+      body.textContent = bodyText;
+
+      n.appendChild(header);
+      n.appendChild(body);
+      notificationContainer.appendChild(n);
+
+      requestAnimationFrame(() => {
+        n.classList.add('show');
+      });
+
+      let timeoutId = setTimeout(() => {
+        n.classList.remove('show');
+        setTimeout(() => n.remove(), 200);
+      }, 4000);
+
+      n.addEventListener('click', () => {
+        clearTimeout(timeoutId);
+        n.remove();
+        if (targetScreenId && screens[targetScreenId]) {
+          setActiveScreen(targetScreenId);
+        }
+      });
+    }
+
+    /* تهيئة الشات */
+    setupSimpleChat('imChatBody', 'imChatInput', 'imSendBtn', { storageKey: 'kwai_chat_im' });
+    setupSimpleChat('kwaiAIChatBody', 'kwaiAIInput', 'kwaiAISendBtn', { isAI: true, storageKey: 'kwai_chat_ai' });
+    setupSimpleChat('chatKuwaitBody', 'chatKuwaitInput', 'chatKuwaitSendBtn', { storageKey: 'kwai_chat_kuwait' });
+
+    /* الإعدادات: ثيم + localStorage */
     const darkModeSwitch = document.getElementById('darkModeSwitch');
     const kuwaitThemeSwitch = document.getElementById('kuwaitThemeSwitch');
+
+    function applyThemeFromStorage() {
+      let darkOn = true;
+      let kuwaitOn = true;
+      try {
+        const t = JSON.parse(localStorage.getItem('kwaiTheme') || '{}');
+        if (typeof t.darkOn === 'boolean') darkOn = t.darkOn;
+        if (typeof t.kuwaitOn === 'boolean') kuwaitOn = t.kuwaitOn;
+      } catch {}
+
+      if (!darkOn) {
+        darkModeSwitch.classList.remove('on');
+        phoneInner.classList.add('light-mode');
+      }
+      if (!kuwaitOn) {
+        kuwaitThemeSwitch.classList.remove('on');
+        phoneInner.style.animationPlayState = 'paused';
+      }
+    }
+
+    function saveTheme() {
+      const darkOn = darkModeSwitch.classList.contains('on');
+      const kuwaitOn = kuwaitThemeSwitch.classList.contains('on');
+      localStorage.setItem('kwaiTheme', JSON.stringify({ darkOn, kuwaitOn }));
+    }
 
     function toggleSwitch(sw) {
       sw.classList.toggle('on');
@@ -1647,13 +2037,17 @@
       } else {
         phoneInner.classList.add('light-mode');
       }
+      saveTheme();
     });
 
     kuwaitThemeSwitch.addEventListener('click', () => {
       toggleSwitch(kuwaitThemeSwitch);
       const on = kuwaitThemeSwitch.classList.contains('on');
       phoneInner.style.animationPlayState = on ? 'running' : 'paused';
+      saveTheme();
     });
+
+    applyThemeFromStorage();
 
     /* المتصفح */
     document.querySelectorAll('.browser-btn').forEach(btn => {
@@ -1669,8 +2063,81 @@
     if (cameraShotBtn) {
       cameraShotBtn.addEventListener('click', () => {
         cameraMsg.textContent = 'تم التقاط لقطة (وهمية) — هذه محاكاة فقط.';
+        sendNotification('الكاميرا', 'تم التقاط صورة (محاكاة)', 'cameraScreen');
       });
     }
+
+    /* مركز التحكم: زر + سحب من الأعلى */
+    const ccOverlay = document.getElementById('controlCenterOverlay');
+    const ccButton = document.getElementById('ccButton');
+    const ccHandle = document.getElementById('ccHandle');
+    let ccOpen = false;
+
+    function openCC() {
+      ccOverlay.classList.add('open');
+      ccOpen = true;
+    }
+
+    function closeCC() {
+      ccOverlay.classList.remove('open');
+      ccOpen = false;
+    }
+
+    ccButton.addEventListener('click', () => {
+      ccOpen ? closeCC() : openCC();
+    });
+
+    ccHandle.addEventListener('click', closeCC);
+
+    // إغلاق مركز التحكم عند الضغط تحت المنطقة
+    ccOverlay.addEventListener('click', (e) => {
+      if (e.target === ccOverlay) {
+        closeCC();
+      }
+    });
+
+    // سحب من أعلى الشاشة
+    let touchStartY = null;
+    let touchStartX = null;
+
+    function startGesture(y, x) {
+      touchStartY = y;
+      touchStartX = x;
+    }
+
+    function endGesture(y) {
+      if (touchStartY === null) return;
+      const dy = y - touchStartY;
+      if (!ccOpen && touchStartY < 80 && dy > 40) {
+        openCC();
+      } else if (ccOpen && dy < -40) {
+        closeCC();
+      }
+      touchStartY = null;
+      touchStartX = null;
+    }
+
+    phoneInner.addEventListener('touchstart', (e) => {
+      const t = e.touches[0];
+      startGesture(t.clientY, t.clientX);
+    });
+
+    phoneInner.addEventListener('touchend', (e) => {
+      const t = e.changedTouches[0];
+      endGesture(t.clientY);
+    });
+
+    // دعم الماوس (سحب بالماوس من فوق)
+    let mouseDown = false;
+    phoneInner.addEventListener('mousedown', (e) => {
+      mouseDown = true;
+      startGesture(e.clientY, e.clientX);
+    });
+    phoneInner.addEventListener('mouseup', (e) => {
+      if (!mouseDown) return;
+      mouseDown = false;
+      endGesture(e.clientY);
+    });
   </script>
 </body>
 </html>
