@@ -88,7 +88,6 @@
       100% { background-position: 0% 0%; }
     }
 
-    /* النوتش / Dynamic Island بسيط */
     .notch {
       position: absolute;
       top: 8px;
@@ -163,15 +162,14 @@
       background: #e5e7eb;
     }
 
-    /* الشاشات */
     .screen {
       position: absolute;
       inset: 0;
       padding: 54px 14px 18px;
       display: none;
       color: #f9fafb;
+      font-size: 13px;
     }
-
     .screen.active {
       display: block;
     }
@@ -237,6 +235,7 @@
       gap: 6px;
       opacity: 0.9;
       animation: pulse 1.8s ease-in-out infinite;
+      cursor: pointer;
     }
 
     .slide-arrow {
@@ -377,17 +376,10 @@
         0 8px 16px rgba(0,0,0,0.8),
         0 0 0 1px rgba(15,23,42,0.9);
       background: linear-gradient(135deg, #0ea5e9, #1e40af);
+      cursor: pointer;
     }
 
-    /* متجر التطبيقات */
-    .store-layout {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      padding-top: 60px;
-      gap: 10px;
-    }
-
+    /* هيدر عام للتطبيقات */
     .screen-header {
       position: absolute;
       top: 54px;
@@ -406,11 +398,23 @@
       font-weight: 700;
     }
 
-    .store-content {
+    .app-page {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding-top: 62px;
+      gap: 10px;
+    }
+
+    .app-page-body {
       flex: 1;
       overflow-y: auto;
-      padding: 0 2px 4px;
-      margin-top: 28px;
+      margin-top: 4px;
+      padding: 4px 2px 4px;
+    }
+
+    /* متجر التطبيقات */
+    .store-content {
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -476,18 +480,7 @@
     }
 
     /* الإعدادات */
-    .settings-layout {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      padding-top: 60px;
-      gap: 10px;
-    }
-
     .settings-content {
-      flex: 1;
-      overflow-y: auto;
-      margin-top: 26px;
       display: flex;
       flex-direction: column;
       gap: 8px;
@@ -555,7 +548,7 @@
       transform: translateX(-100%);
     }
 
-    /* iMessage */
+    /* iMessage / Chat */
     .messages-layout {
       display: flex;
       flex-direction: column;
@@ -564,7 +557,7 @@
     }
 
     .chat-body {
-      margin-top: 26px;
+      margin-top: 6px;
       flex: 1;
       overflow-y: auto;
       padding: 4px 2px 4px;
@@ -637,6 +630,164 @@
       font-size: 11px;
     }
 
+    /* القرآن */
+    .quran-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 13px;
+    }
+
+    .quran-item {
+      padding: 10px;
+      border-radius: 14px;
+      background: rgba(15,23,42,0.96);
+      box-shadow:
+        0 6px 14px rgba(0,0,0,0.85),
+        0 0 0 1px rgba(55,65,81,0.6);
+    }
+
+    .quran-name {
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .quran-text {
+      font-family: 'Tajawal', system-ui;
+      line-height: 1.8;
+    }
+
+    /* أخبار الكويت */
+    .news-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .news-item {
+      padding: 10px;
+      border-radius: 14px;
+      background: rgba(15,23,42,0.96);
+      box-shadow:
+        0 6px 14px rgba(0,0,0,0.85),
+        0 0 0 1px rgba(55,65,81,0.6);
+    }
+
+    .news-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .news-meta {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-bottom: 4px;
+    }
+
+    /* المتصفح */
+    .browser-bar {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+
+    .browser-btn {
+      flex: 1;
+      padding: 4px 6px;
+      font-size: 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.7);
+      background: rgba(15,23,42,0.96);
+      color: #e5e7eb;
+      cursor: pointer;
+    }
+
+    .browser-note {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-bottom: 6px;
+    }
+
+    /* الكاميرا */
+    .camera-view {
+      border-radius: 22px;
+      background: radial-gradient(circle at center, #111827, #020617);
+      height: 280px;
+      margin-bottom: 10px;
+      position: relative;
+      box-shadow:
+        0 10px 22px rgba(0,0,0,0.9),
+        0 0 0 1px rgba(55,65,81,0.8);
+    }
+
+    .camera-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(#11182755 1px, transparent 1px),
+        linear-gradient(90deg, #11182755 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.55;
+    }
+
+    .camera-bottom {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      margin-top: 6px;
+    }
+
+    .camera-shot {
+      width: 58px;
+      height: 58px;
+      border-radius: 999px;
+      border: 3px solid #f9fafb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .camera-shot-inner {
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      background: #f9fafb;
+    }
+
+    .camera-mode {
+      font-size: 11px;
+      color: #e5e7eb;
+    }
+
+    /* الموسيقى */
+    .track {
+      padding: 10px;
+      border-radius: 14px;
+      background: rgba(15,23,42,0.96);
+      box-shadow:
+        0 6px 14px rgba(0,0,0,0.85),
+        0 0 0 1px rgba(55,65,81,0.6);
+      margin-bottom: 6px;
+    }
+
+    .track-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+      font-size: 13px;
+    }
+
+    .track-meta {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-bottom: 4px;
+    }
+
+    audio {
+      width: 100%;
+    }
+
     /* شريط و زر الهوم */
     .home-bar {
       width: 110px;
@@ -668,7 +819,7 @@
       opacity: 0.7;
     }
 
-    /* أزرار تحكم خارجية (للتجربة) */
+    /* أزرار تجريب خارجية */
     .nav-buttons {
       display: flex;
       gap: 8px;
@@ -708,7 +859,7 @@
 <body>
   <div class="app-wrapper">
     <div class="title">نظام آيفون كويتي حديث</div>
-    <div class="subtitle">محاكاة iOS مع متجر وهمي وإعدادات – داخل المتصفح</div>
+    <div class="subtitle">محاكاة iOS كويتي مع متجر وتطبيقات تعمل داخل الموقع</div>
 
     <div class="mode-label" id="modeLabel">الوضع الحالي: شاشة القفل</div>
 
@@ -746,7 +897,7 @@
                 <span>الآن</span>
               </div>
               <div class="lock-notification-body">
-                اسحب للداخل للدخول على نظام الآيفون الكويتي الحديث مع متجر وإعدادات.
+                اسحب للداخل للدخول على نظام الآيفون الكويتي الحديث مع متجر وتطبيقات شغّالة داخل الموقع.
               </div>
             </div>
             <div class="lock-notification">
@@ -755,7 +906,7 @@
                 <span>قبل دقيقة</span>
               </div>
               <div class="lock-notification-body">
-                تطبيقات كويتية جاهزة للتثبيت: شات، أخبار، قرآن، متجر Kwai.
+                تطبيقات كويتية: Kwai AI • القرآن • أخبار • شات كويتي • متجر Kwai.
               </div>
             </div>
           </div>
@@ -774,114 +925,390 @@
               <span>الكويت</span>
             </div>
 
-            <div class="apps-grid" id="homeApps">
-              <!-- يتم تعبئتها من جافاسكربت -->
-            </div>
+            <div class="apps-grid" id="homeApps"></div>
 
             <div class="dock">
               <div class="icon icon-messages" data-open="messagesScreen">💬</div>
-              <div class="icon icon-browser">🌐</div>
-              <div class="icon icon-music">🎵</div>
+              <div class="icon icon-browser" data-open="browserScreen">🌐</div>
+              <div class="icon icon-music" data-open="musicScreen">🎵</div>
               <div class="icon icon-generic">📞</div>
             </div>
           </div>
         </div>
 
-        <!-- متجر التطبيقات -->
+        <!-- App Store -->
         <div class="screen" id="storeScreen">
-          <div class="store-layout">
+          <div class="app-page">
             <div class="screen-header">
-              <div>‹ رجوع</div>
+              <div class="back-btn" data-open="homeScreen">‹ رجوع</div>
               <div class="screen-header-title">App Store — الكويت</div>
               <div>الحساب</div>
             </div>
-
-            <div class="store-content" id="storeContent">
-              <!-- البطاقات من جافاسكربت -->
+            <div class="app-page-body">
+              <div class="store-content" id="storeContent"></div>
             </div>
           </div>
         </div>
 
         <!-- الإعدادات -->
         <div class="screen" id="settingsScreen">
-          <div class="settings-layout">
+          <div class="app-page">
             <div class="screen-header">
-              <div>‹ رجوع</div>
+              <div class="back-btn" data-open="homeScreen">‹ رجوع</div>
               <div class="screen-header-title">الإعدادات</div>
               <div></div>
             </div>
+            <div class="app-page-body">
+              <div class="settings-content">
+                <div class="settings-section-title">النظام</div>
+                <div class="setting-row">
+                  <div class="setting-label">
+                    <span>الوضع الليلي</span>
+                    <span>خلفية داكنة بألوان العلم الكويتي</span>
+                  </div>
+                  <div class="switch on" id="darkModeSwitch">
+                    <div class="switch-thumb"></div>
+                  </div>
+                </div>
+                <div class="setting-row">
+                  <div class="setting-label">
+                    <span>ثيم كويتي</span>
+                    <span>تفعيل حركة ألوان العلم</span>
+                  </div>
+                  <div class="switch on" id="kuwaitThemeSwitch">
+                    <div class="switch-thumb"></div>
+                  </div>
+                </div>
 
-            <div class="settings-content">
-              <div class="settings-section-title">النظام</div>
-              <div class="setting-row">
-                <div class="setting-label">
-                  <span>الوضع الليلي</span>
-                  <span>خلفية داكنة بألوان العلم الكويتي</span>
+                <div class="settings-section-title">الاتصالات</div>
+                <div class="setting-row">
+                  <div class="setting-label">
+                    <span>Wi-Fi</span>
+                    <span>البيت — متصل</span>
+                  </div>
+                  <div class="switch on">
+                    <div class="switch-thumb"></div>
+                  </div>
                 </div>
-                <div class="switch on" id="darkModeSwitch">
-                  <div class="switch-thumb"></div>
+                <div class="setting-row">
+                  <div class="setting-label">
+                    <span>Bluetooth</span>
+                    <span>AirPods • متصل</span>
+                  </div>
+                  <div class="switch on">
+                    <div class="switch-thumb"></div>
+                  </div>
                 </div>
-              </div>
 
-              <div class="setting-row">
-                <div class="setting-label">
-                  <span>ثيم كويتي</span>
-                  <span>تفعيل هوية الكويت في الخلفية</span>
+                <div class="settings-section-title">الشاشة والمظهر</div>
+                <div class="setting-row">
+                  <div class="setting-label">
+                    <span>الخلفيات</span>
+                    <span>خلفية داكنة كويتية</span>
+                  </div>
+                  <span>›</span>
                 </div>
-                <div class="switch on" id="kuwaitThemeSwitch">
-                  <div class="switch-thumb"></div>
+                <div class="setting-row">
+                  <div class="setting-label">
+                    <span>مركز التحكم</span>
+                    <span>تخصيص اختصارات</span>
+                  </div>
+                  <span>›</span>
                 </div>
-              </div>
 
-              <div class="settings-section-title">المتجر والتطبيقات</div>
-              <div class="setting-row">
-                <div class="setting-label">
-                  <span>تطبيقات مثبتة</span>
-                  <span id="installedCountText">٤ تطبيقات أساسية</span>
+                <div class="settings-section-title">الإشعارات والبطارية</div>
+                <div class="setting-row">
+                  <div class="setting-label">
+                    <span>الإشعارات</span>
+                    <span>مسموحة لمعظم التطبيقات</span>
+                  </div>
+                  <span>›</span>
                 </div>
-              </div>
+                <div class="setting-row">
+                  <div class="setting-label">
+                    <span>البطارية</span>
+                    <span>استهلاك منخفض — وضع موفّر الطاقة متوقف</span>
+                  </div>
+                  <span>›</span>
+                </div>
 
-              <div class="settings-section-title">حول النظام</div>
-              <div class="setting-row">
-                <div class="setting-label">
-                  <span>إصدار النظام</span>
-                  <span>Kwai iOS Kuwait Edition (محاكاة ويب)</span>
+                <div class="settings-section-title">عام</div>
+                <div class="setting-row">
+                  <div class="setting-label">
+                    <span>حول</span>
+                    <span>Kwai iOS Kuwait Edition (محاكاة ويب)</span>
+                  </div>
+                  <span>›</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- iMessage -->
+        <!-- iMessage (الرسائل) -->
         <div class="screen" id="messagesScreen">
           <div class="messages-layout">
             <div class="screen-header">
-              <div data-open="homeScreen" style="cursor:pointer;">‹ رجوع</div>
+              <div class="back-btn" data-open="homeScreen">‹ الرجوع</div>
               <div class="screen-header-title">قروب ربع الكويت 🇰🇼</div>
               <div>تفاصيل</div>
             </div>
-
-            <div class="chat-body" id="chatBody">
+            <div class="chat-body" id="imChatBody">
               <div class="bubble-row me">
                 <div class="bubble me">
-                  أهلاً، هذا نظام آيفون كويتي داخل موقع، المتجر يثبت برامج على الشاشة الرئيسية.
+                  أهلاً، هذا نظام آيفون كويتي شغال داخل الموقع.
                 </div>
               </div>
               <div class="bubble-row them">
                 <div class="bubble them">
-                  رهيب، سوى Kwai iOS للويب بخلفية علم الكويت وشكل حديث.
+                  فخم، حتى المتجر والإعدادات والتطبيقات يشتغلون.
+                </div>
+              </div>
+            </div>
+            <div class="chat-input">
+              <input type="text" id="imChatInput" class="input-field" placeholder="اكتب رسالة..." />
+              <button class="send-btn" id="imSendBtn">إرسال</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kwai AI (محادثة محلية) -->
+        <div class="screen" id="kwaiAIScreen">
+          <div class="messages-layout">
+            <div class="screen-header">
+              <div class="back-btn" data-open="homeScreen">‹ رجوع</div>
+              <div class="screen-header-title">Kwai AI — كويتي</div>
+              <div></div>
+            </div>
+            <div class="chat-body" id="kwaiAIChatBody">
+              <div class="bubble-row them">
+                <div class="bubble them">
+                  أهلاً، أنا Kwai AI داخل نظامك الكويتي. اكتب أي شيء وراح أرد عليك محلياً (بدون إنترنت حقيقي).
+                </div>
+              </div>
+            </div>
+            <div class="chat-input">
+              <input type="text" id="kwaiAIInput" class="input-field" placeholder="اسأل Kwai AI..." />
+              <button class="send-btn" id="kwaiAISendBtn">إرسال</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quran Kuwait -->
+        <div class="screen" id="quranScreen">
+          <div class="app-page">
+            <div class="screen-header">
+              <div class="back-btn" data-open="homeScreen">‹ رجوع</div>
+              <div class="screen-header-title">Quran Kuwait</div>
+              <div></div>
+            </div>
+            <div class="app-page-body">
+              <div class="quran-list">
+                <div class="quran-item">
+                  <div class="quran-name">سورة الكوثر</div>
+                  <div class="quran-text">
+                    بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ<br>
+                    إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ (1)<br>
+                    فَصَلِّ لِرَبِّكَ وَانْحَرْ (2)<br>
+                    إِنَّ شَانِئَكَ هُوَ الْأَبْتَرُ (3)
+                  </div>
+                </div>
+                <div class="quran-item">
+                  <div class="quran-name">سورة الإخلاص</div>
+                  <div class="quran-text">
+                    بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ<br>
+                    قُلْ هُوَ اللَّهُ أَحَدٌ (1)<br>
+                    اللَّهُ الصَّمَدُ (2)<br>
+                    لَمْ يَلِدْ وَلَمْ يُولَدْ (3)<br>
+                    وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ (4)
+                  </div>
+                </div>
+                <div class="quran-item">
+                  <div class="quran-name">سورة الفلق</div>
+                  <div class="quran-text">
+                    بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ<br>
+                    قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ (1)<br>
+                    مِن شَرِّ مَا خَلَقَ (2)<br>
+                    وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ (3)<br>
+                    وَمِن شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ (4)<br>
+                    وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ (5)
+                  </div>
+                </div>
+                <div class="quran-item">
+                  <div class="quran-name">سورة الناس</div>
+                  <div class="quran-text">
+                    بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ<br>
+                    قُلْ أَعُوذُ بِرَبِّ النَّاسِ (1)<br>
+                    مَلِكِ النَّاسِ (2)<br>
+                    إِلَهِ النَّاسِ (3)<br>
+                    مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ (4)<br>
+                    الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ (5)<br>
+                    مِنَ الْجِنَّةِ وَالنَّاسِ (6)
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chat Kuwait -->
+        <div class="screen" id="chatKuwaitScreen">
+          <div class="messages-layout">
+            <div class="screen-header">
+              <div class="back-btn" data-open="homeScreen">‹ رجوع</div>
+              <div class="screen-header-title">Chat Kuwait</div>
+              <div></div>
+            </div>
+            <div class="chat-body" id="chatKuwaitBody">
+              <div class="bubble-row them">
+                <div class="bubble them">
+                  هلا والله، هذا شات كويتي داخل النظام (محاكاة على جهازك فقط).
                 </div>
               </div>
               <div class="bubble-row me">
                 <div class="bubble me">
-                  لو ودك نطور، نقدر نضيف إشعارات، شاشة قفل متحركة، وأكثر.
+                  أكتب تحت، وراح تنضاف رسائلك في المحادثة.
                 </div>
               </div>
             </div>
-
             <div class="chat-input">
-              <input type="text" id="chatInput" class="input-field" placeholder="اكتب رسالة..." />
-              <button class="send-btn" id="sendBtn">إرسال</button>
+              <input type="text" id="chatKuwaitInput" class="input-field" placeholder="اكتب رسالة في الشات..." />
+              <button class="send-btn" id="chatKuwaitSendBtn">إرسال</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kuwait News -->
+        <div class="screen" id="newsScreen">
+          <div class="app-page">
+            <div class="screen-header">
+              <div class="back-btn" data-open="homeScreen">‹ رجوع</div>
+              <div class="screen-header-title">Kuwait News</div>
+              <div></div>
+            </div>
+            <div class="app-page-body">
+              <div class="news-list">
+                <div class="news-item">
+                  <div class="news-title">تطوير منصات رقمية كويتية للشباب</div>
+                  <div class="news-meta">تقني • كويت • اليوم</div>
+                  <div>مشروع "Kwai" يهدف لتقديم منصّة ذكاء اصطناعي خاصة بالمستخدم الكويتي مع دعم كامل للغة العربية.</div>
+                </div>
+                <div class="news-item">
+                  <div class="news-title">تحسين خدمات الإنترنت في مناطق متعددة</div>
+                  <div class="news-meta">محلي • بنية تحتية</div>
+                  <div>تطوير شبكات 5G في عدة مناطق لرفع سرعة الاتصال ودعم المشاريع التقنية الجديدة.</div>
+                </div>
+                <div class="news-item">
+                  <div class="news-title">إطلاق مبادرات للتعلم البرمجي</div>
+                  <div class="news-meta">تعليم • شباب</div>
+                  <div>برامج لتعليم البرمجة وتصميم المواقع والتطبيقات لطلاب المدارس والجامعات.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kwai Store (تطبيق داخلي) -->
+        <div class="screen" id="kwaiStoreScreen">
+          <div class="app-page">
+            <div class="screen-header">
+              <div class="back-btn" data-open="homeScreen">‹ رجوع</div>
+              <div class="screen-header-title">Kwai Store</div>
+              <div></div>
+            </div>
+            <div class="app-page-body">
+              <p style="font-size:12px;color:#9ca3af;margin-bottom:8px;">
+                هذا نسخة مبسطة من متجر داخلي، يعتمد على نفس قائمة التطبيقات في App Store.
+              </p>
+              <div class="store-content" id="kwaiStoreContent"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- المتصفح -->
+        <div class="screen" id="browserScreen">
+          <div class="app-page">
+            <div class="screen-header">
+              <div class="back-btn" data-open="homeScreen">‹ رجوع</div>
+              <div class="screen-header-title">المتصفح</div>
+              <div></div>
+            </div>
+            <div class="app-page-body">
+              <div class="browser-bar">
+                <button class="browser-btn" data-url="https://www.google.com">Google</button>
+                <button class="browser-btn" data-url="https://www.youtube.com">YouTube</button>
+                <button class="browser-btn" data-url="https://kwai.example.com">Kwai Site</button>
+              </div>
+              <div class="browser-note">
+                لأسباب أمان في المتصفح، بعض المواقع ما تفتح داخل الإطار، فراح تفتح في تبويب جديد.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- الكاميرا -->
+        <div class="screen" id="cameraScreen">
+          <div class="app-page">
+            <div class="screen-header">
+              <div class="back-btn" data-open="homeScreen">‹ رجوع</div>
+              <div class="screen-header-title">الكاميرا (محاكاة)</div>
+              <div></div>
+            </div>
+            <div class="app-page-body">
+              <div class="camera-view">
+                <div class="camera-grid"></div>
+              </div>
+              <div class="camera-bottom">
+                <div class="camera-mode">PHOTO</div>
+                <div class="camera-shot" id="cameraShotBtn">
+                  <div class="camera-shot-inner"></div>
+                </div>
+                <div class="camera-mode">VIDEO</div>
+              </div>
+              <div id="cameraMsg" style="font-size:11px;color:#9ca3af;margin-top:6px;text-align:center;">
+                واجهة محاكاة فقط. للتصوير الحقيقي نحتاج صلاحيات متصفح وHTTPS.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- مشغل الموسيقى -->
+        <div class="screen" id="musicScreen">
+          <div class="app-page">
+            <div class="screen-header">
+              <div class="back-btn" data-open="homeScreen">‹ رجوع</div>
+              <div class="screen-header-title">مشغل الموسيقى</div>
+              <div></div>
+            </div>
+            <div class="app-page-body">
+              <p style="font-size:11px;color:#9ca3af;margin-bottom:6px;">
+                ضع روابط mp3 الخاصة فيك مكان src في عناصر audio تحت.
+              </p>
+
+              <div class="track">
+                <div class="track-title">مقاطع — Track 1</div>
+                <div class="track-meta">ملف mp3 جاهز</div>
+                <audio controls>
+                  <!-- غيّر الرابط لرابط mp3 خاص فيك -->
+                  <source src="" type="audio/mpeg">
+                </audio>
+              </div>
+
+              <div class="track">
+                <div class="track-title">مقاطع — Track 2</div>
+                <div class="track-meta">ملف mp3 جاهز</div>
+                <audio controls>
+                  <source src="" type="audio/mpeg">
+                </audio>
+              </div>
+
+              <div class="track">
+                <div class="track-title">مقاطع — Track 3</div>
+                <div class="track-meta">ملف mp3 جاهز</div>
+                <audio controls>
+                  <source src="" type="audio/mpeg">
+                </audio>
+              </div>
             </div>
           </div>
         </div>
@@ -894,7 +1321,7 @@
 
     <div class="nav-buttons">
       <button class="nav-btn active" data-target="lockScreen">شاشة القفل</button>
-      <button class="nav-btn" data-target="homeScreen">الشاشة الرئيسية</button>
+      <button class="nav-btn" data-target="homeScreen">الرئيسية</button>
       <button class="nav-btn" data-target="storeScreen">App Store</button>
       <button class="nav-btn" data-target="settingsScreen">الإعدادات</button>
       <button class="nav-btn" data-target="messagesScreen">iMessage</button>
@@ -902,13 +1329,20 @@
   </div>
 
   <script>
-    // الشاشات
     const screens = {
       lockScreen: document.getElementById('lockScreen'),
       homeScreen: document.getElementById('homeScreen'),
       storeScreen: document.getElementById('storeScreen'),
       settingsScreen: document.getElementById('settingsScreen'),
-      messagesScreen: document.getElementById('messagesScreen')
+      messagesScreen: document.getElementById('messagesScreen'),
+      kwaiAIScreen: document.getElementById('kwaiAIScreen'),
+      quranScreen: document.getElementById('quranScreen'),
+      chatKuwaitScreen: document.getElementById('chatKuwaitScreen'),
+      newsScreen: document.getElementById('newsScreen'),
+      kwaiStoreScreen: document.getElementById('kwaiStoreScreen'),
+      browserScreen: document.getElementById('browserScreen'),
+      cameraScreen: document.getElementById('cameraScreen'),
+      musicScreen: document.getElementById('musicScreen')
     };
 
     const modeLabel = document.getElementById('modeLabel');
@@ -919,9 +1353,7 @@
 
     function setActiveScreen(screenId) {
       Object.values(screens).forEach(s => s.classList.remove('active'));
-      if (screens[screenId]) {
-        screens[screenId].classList.add('active');
-      }
+      if (screens[screenId]) screens[screenId].classList.add('active');
 
       navBtns.forEach(btn => {
         btn.classList.toggle('active', btn.dataset.target === screenId);
@@ -931,9 +1363,17 @@
       switch (screenId) {
         case 'lockScreen': label = 'الوضع الحالي: شاشة القفل'; break;
         case 'homeScreen': label = 'الوضع الحالي: الشاشة الرئيسية'; break;
-        case 'storeScreen': label = 'الوضع الحالي: App Store (محاكاة)'; break;
+        case 'storeScreen': label = 'الوضع الحالي: App Store'; break;
         case 'settingsScreen': label = 'الوضع الحالي: الإعدادات'; break;
         case 'messagesScreen': label = 'الوضع الحالي: iMessage'; break;
+        case 'kwaiAIScreen': label = 'الوضع الحالي: Kwai AI'; break;
+        case 'quranScreen': label = 'الوضع الحالي: Quran Kuwait'; break;
+        case 'chatKuwaitScreen': label = 'الوضع الحالي: Chat Kuwait'; break;
+        case 'newsScreen': label = 'الوضع الحالي: Kuwait News'; break;
+        case 'kwaiStoreScreen': label = 'الوضع الحالي: Kwai Store'; break;
+        case 'browserScreen': label = 'الوضع الحالي: المتصفح'; break;
+        case 'cameraScreen': label = 'الوضع الحالي: الكاميرا'; break;
+        case 'musicScreen': label = 'الوضع الحالي: مشغل الموسيقى'; break;
       }
       modeLabel.textContent = label;
     }
@@ -945,18 +1385,22 @@
     homeButton.addEventListener('click', () => setActiveScreen('homeScreen'));
     slideUnlock.addEventListener('click', () => setActiveScreen('homeScreen'));
 
-    // الضغط على رجوع من الهيدر يرجع للهوم
-    document.querySelectorAll('.screen-header div:first-child').forEach(back => {
-      back.addEventListener('click', () => setActiveScreen('homeScreen'));
+    document.addEventListener('click', (e) => {
+      const open = e.target.dataset.open;
+      if (open && screens[open]) {
+        setActiveScreen(open);
+      }
+      if (e.target.classList.contains('back-btn')) {
+        const t = e.target.dataset.open || 'homeScreen';
+        setActiveScreen(t);
+      }
     });
 
-    // تحديث الوقت والتاريخ
     function updateTime() {
       const now = new Date();
-      const hours = now.getHours().toString().padStart(2, '0');
-      const minutes = now.getMinutes().toString().padStart(2, '0');
-      const timeStr = `${hours}:${minutes}`;
-
+      const h = now.getHours().toString().padStart(2, '0');
+      const m = now.getMinutes().toString().padStart(2, '0');
+      const timeStr = `${h}:${m}`;
       const days = ['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
       const months = [
         'يناير','فبراير','مارس','أبريل','مايو','يونيو',
@@ -974,67 +1418,71 @@
     updateTime();
     setInterval(updateTime, 30000);
 
-    // المتجر والتطبيقات
+    /* المتجر والتطبيقات */
     const homeAppsContainer = document.getElementById('homeApps');
     const storeContent = document.getElementById('storeContent');
-    const installedCountText = document.getElementById('installedCountText');
+    const kwaiStoreContent = document.getElementById('kwaiStoreContent');
 
-    // تطبيقات موجودة في المتجر
     const appCatalog = [
       {
         id: 'kwai',
         name: 'Kwai AI Kuwait',
         category: 'ذكاء اصطناعي • كويتي',
-        desc: 'مساعد ذكي مخصص للمستخدمين في الكويت.',
+        desc: 'شات ذكاء اصطناعي محلي داخل النظام.',
         icon: 'KW',
-        className: 'icon-kuwait'
+        className: 'icon-kuwait',
+        openScreen: 'kwaiAIScreen'
       },
       {
         id: 'quran',
         name: 'Quran Kuwait',
         category: 'ديني',
-        desc: 'قرآن كريم مع مواقيت الصلاة في الكويت.',
+        desc: 'سور قصيرة معروضة داخل التطبيق.',
         icon: '﷽',
-        className: 'icon-generic'
+        className: 'icon-generic',
+        openScreen: 'quranScreen'
       },
       {
         id: 'chat',
         name: 'Chat Kuwait',
         category: 'اجتماعي',
-        desc: 'دردشة مع ربعك بواجهة كويتية.',
+        desc: 'شات كويتي محلي داخل النظام.',
         icon: '💬',
-        className: 'icon-messages'
+        className: 'icon-messages',
+        openScreen: 'chatKuwaitScreen'
       },
       {
         id: 'news',
         name: 'Kuwait News',
         category: 'أخبار',
-        desc: 'آخر الأخبار المحلية في الكويت.',
+        desc: 'عناوين لأخبار كويتية ثابتة.',
         icon: '📰',
-        className: 'icon-generic'
+        className: 'icon-generic',
+        openScreen: 'newsScreen'
       },
       {
-        id: 'store',
+        id: 'kstore',
         name: 'Kwai Store',
-        category: 'متجر',
-        desc: 'متجر تجريبي لتطبيقات Kwai.',
+        category: 'متجر داخلي',
+        desc: 'واجهة متجر داخلية مبسّطة.',
         icon: '🛒',
-        className: 'icon-store'
+        className: 'icon-store',
+        openScreen: 'kwaiStoreScreen'
       }
     ];
 
-    // تطبيقات مثبتة على الهوم (IDs)
-    const installedApps = new Set(['messages', 'settings', 'storeMain', 'camera']);
+    const installedApps = new Set(['messages', 'settings', 'storeMain', 'camera', 'browser', 'music']);
 
     function renderHomeApps() {
       homeAppsContainer.innerHTML = '';
 
-      // تطبيقات أساسية ثابتة
       const baseApps = [
         { id: 'storeMain', name: 'App Store', icon: '', className: 'icon-store', target: 'storeScreen' },
         { id: 'settings',  name: 'الإعدادات', icon: '⚙️', className: 'icon-settings', target: 'settingsScreen' },
         { id: 'messages',  name: 'الرسائل',   icon: '💬', className: 'icon-messages', target: 'messagesScreen' },
-        { id: 'camera',    name: 'الكاميرا',  icon: '📷', className: 'icon-camera', target: null }
+        { id: 'camera',    name: 'الكاميرا',  icon: '📷', className: 'icon-camera', target: 'cameraScreen' },
+        { id: 'browser',   name: 'المتصفح',   icon: '🌐', className: 'icon-browser', target: 'browserScreen' },
+        { id: 'music',     name: 'الموسيقى',  icon: '🎵', className: 'icon-music', target: 'musicScreen' }
       ];
 
       const appsToShow = [];
@@ -1043,7 +1491,6 @@
         if (installedApps.has(app.id)) appsToShow.push(app);
       });
 
-      // من الكاتالوج
       appCatalog.forEach(app => {
         if (installedApps.has(app.id)) {
           appsToShow.push({
@@ -1051,7 +1498,7 @@
             name: app.name,
             icon: app.icon,
             className: app.className || 'icon-generic',
-            target: null
+            target: app.openScreen
           });
         }
       });
@@ -1064,25 +1511,19 @@
         const iconDiv = document.createElement('div');
         iconDiv.className = 'icon ' + (app.className || 'icon-generic');
         iconDiv.textContent = app.icon || '';
-
-        if (app.target) {
-          iconDiv.dataset.open = app.target;
-        }
-
-        wrapper.appendChild(iconDiv);
+        if (app.target) iconDiv.dataset.open = app.target;
 
         const label = document.createElement('span');
         label.textContent = app.name;
-        wrapper.appendChild(label);
 
+        wrapper.appendChild(iconDiv);
+        wrapper.appendChild(label);
         homeAppsContainer.appendChild(wrapper);
       });
-
-      installedCountText.textContent = `${installedApps.size} تطبيق/تطبيقات مثبتة`;
     }
 
-    function renderStore() {
-      storeContent.innerHTML = '';
+    function renderStoreList(targetElement) {
+      targetElement.innerHTML = '';
       appCatalog.forEach(app => {
         const card = document.createElement('div');
         card.className = 'app-card';
@@ -1138,49 +1579,59 @@
         card.appendChild(i);
         card.appendChild(info);
         card.appendChild(btn);
-        storeContent.appendChild(card);
+        targetElement.appendChild(card);
       });
     }
 
     renderHomeApps();
-    renderStore();
+    renderStoreList(storeContent);
+    renderStoreList(kwaiStoreContent);
 
-    // فتح الشاشات من الآيقونات
-    document.addEventListener('click', (e) => {
-      const openTarget = e.target.dataset.open;
-      if (openTarget) {
-        setActiveScreen(openTarget);
+    /* iMessage */
+    function setupSimpleChat(bodyId, inputId, btnId, isAI = false) {
+      const body = document.getElementById(bodyId);
+      const input = document.getElementById(inputId);
+      const btn = document.getElementById(btnId);
+
+      function addBubble(text, who = 'me') {
+        const row = document.createElement('div');
+        row.className = 'bubble-row ' + who;
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble ' + who;
+        bubble.textContent = text;
+        row.appendChild(bubble);
+        body.appendChild(row);
+        body.scrollTop = body.scrollHeight;
       }
-    });
 
-    // iMessage إرسال
-    const chatBody = document.getElementById('chatBody');
-    const chatInput = document.getElementById('chatInput');
-    const sendBtn = document.getElementById('sendBtn');
+      function send() {
+        const text = input.value.trim();
+        if (!text) return;
+        addBubble(text, 'me');
+        input.value = '';
+        if (isAI) {
+          setTimeout(() => {
+            addBubble('رد Kwai AI (محلي): فهمت كلامك عن "' + text + '" لكن هنا مجرد محاكاة داخل الموقع.', 'them');
+          }, 400);
+        }
+      }
 
-    function sendMessage() {
-      const text = chatInput.value.trim();
-      if (!text) return;
-      const row = document.createElement('div');
-      row.className = 'bubble-row me';
-      const bubble = document.createElement('div');
-      bubble.className = 'bubble me';
-      bubble.textContent = text;
-      row.appendChild(bubble);
-      chatBody.appendChild(row);
-      chatBody.scrollTop = chatBody.scrollHeight;
-      chatInput.value = '';
+      btn.addEventListener('click', send);
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          send();
+        }
+      });
+
+      return { addBubble };
     }
 
-    sendBtn.addEventListener('click', sendMessage);
-    chatInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        sendMessage();
-      }
-    });
+    setupSimpleChat('imChatBody', 'imChatInput', 'imSendBtn', false);
+    setupSimpleChat('kwaiAIChatBody', 'kwaiAIInput', 'kwaiAISendBtn', true);
+    setupSimpleChat('chatKuwaitBody', 'chatKuwaitInput', 'chatKuwaitSendBtn', false);
 
-    // الإعدادات: ثيم
+    /* الإعدادات: ثيم */
     const darkModeSwitch = document.getElementById('darkModeSwitch');
     const kuwaitThemeSwitch = document.getElementById('kuwaitThemeSwitch');
 
@@ -1192,10 +1643,8 @@
       toggleSwitch(darkModeSwitch);
       const on = darkModeSwitch.classList.contains('on');
       if (on) {
-        // داكن
         phoneInner.classList.remove('light-mode');
       } else {
-        // فاتح
         phoneInner.classList.add('light-mode');
       }
     });
@@ -1203,12 +1652,25 @@
     kuwaitThemeSwitch.addEventListener('click', () => {
       toggleSwitch(kuwaitThemeSwitch);
       const on = kuwaitThemeSwitch.classList.contains('on');
-      if (on) {
-        phoneInner.style.animationPlayState = 'running';
-      } else {
-        phoneInner.style.animationPlayState = 'paused';
-      }
+      phoneInner.style.animationPlayState = on ? 'running' : 'paused';
     });
+
+    /* المتصفح */
+    document.querySelectorAll('.browser-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const url = btn.dataset.url;
+        if (url) window.open(url, '_blank');
+      });
+    });
+
+    /* الكاميرا */
+    const cameraShotBtn = document.getElementById('cameraShotBtn');
+    const cameraMsg = document.getElementById('cameraMsg');
+    if (cameraShotBtn) {
+      cameraShotBtn.addEventListener('click', () => {
+        cameraMsg.textContent = 'تم التقاط لقطة (وهمية) — هذه محاكاة فقط.';
+      });
+    }
   </script>
 </body>
 </html>
